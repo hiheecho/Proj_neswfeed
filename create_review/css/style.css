@@ -1,0 +1,33 @@
+*{font-family: 'Gowun Dodum', sans-serif;}
+
+/* review style */
+.postNav{height: 100px; display: flex;justify-content: right;}
+.postNav #goMainBtn{ margin: 5px; border-radius: 20px; padding: 5px 20px; margin-left: 20px;}
+
+.post-container{
+    width: 50%;
+    height: 530px;
+    margin: auto;
+    border: 1px solid gray;
+    padding: 50px 50px;
+}
+.profile img{
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+#nickname { 
+    margin-left: 10px; 
+    font-size: 20px; 
+    vertical-align:middle;
+}
+.form-floating{ margin-bottom: 25px;}
+
+.form-floating label{ margin-left: 5px; font-size: 15px; }
+#submitBtn{
+    display: flex; 
+    float: right; 
+    
+    border-radius: 20px; 
+    padding: 5px 30px;
+}
