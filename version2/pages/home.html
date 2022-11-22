@@ -1,0 +1,40 @@
+<div class="notLoginNav">
+    <div class="profile form-floating mb-3">
+        <input id="loginBtn" class="btn btn-secondary" type="submit" value="로그인" >
+        <input id="signinBtn" class="btn btn-secondary" type="submit" value="회원가입" >
+    </div>   
+</div>
+<div class="LoginedNav hide">
+    <div class="profile form-floating mb-3">
+        <img id="profileImg" width="50px" height="50px" src="/assets/unknown_profile.png" />
+        <span id="nickname">닉네임</span>
+    <input id="goWriteBtn" class="btn btn-secondary" type="submit" value="새 글 작성하기" onclick="goToWrite()">
+    </div>   
+</div>
+<section class="preview">
+    <h2>요즘 뜨는 추천 영화는?</h2>
+    <div id = "slide" class="swiper">
+        <div class = "swiper-wrapper" id="review-list">
+        
+        </div>
+    
+    <div class="swiper-button-prev" onclick="moveRight()"></div>
+    <div class="swiper-button-next" onclick="moveleft()"></div>
+    </div>
+</div>  
+</section>
+<script>
+    const swiper = new Swiper('.swiper', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3, 
+    loop: true,
+    // Navigation arrows
+    
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

@@ -11,22 +11,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    
     <link rel="stylesheet" href="./css/style.css">
+    
 </head>
 <body>
     <div class="root">
+        <h1>그 영화 재밌어?</h1>
         <nav id="main-nav">
             <!-- 이동하기위한 함수 rounte (event라는 매개변수를 이용) -->
             <a href="#" onclick="route(event)">Home</a> 
             <a href="#review" onclick="route(event)">새 글 작성하기</a>
-            <a href="#page2" onclick="route(event)">Page2</a>
+            <a href="#auth" onclick="route(event)">로그인/회원가입</a>
+            <a href="#profile" onclick="route(event)">프로필수정</a>
         </nav>
         <div id="main-page">
 
         </div>
-        <script src="js/main.js" type="module"/>
         
     </div>
-    
+    <script src="js/main.js" type="module"></script>
+    <!-- <script src="./js/swiper.js"></script> -->
 </body>
 </html>
