@@ -1,11 +1,11 @@
 //최상위파일로 전체적인 허브역할을 하여 페이지별로 쪼개는 역할
 import { handleAuth, onToggle, logout, socialLogin } from "./pages/auth.js";
 import { authService } from "./firebase.js"; //firebase에서 authservice가 임포트
-import { handleLocation , route ,goToMain} from "./router.js"; 
+import { handleLocation , route ,goToMain, goToWrite, goToRead} from "./router.js"; 
 //firebase,router.js와 한 파일이라고 생각
-import {
-    save_review
-  } from "./pages/review.js";
+import { save_review } from "./pages/review.js";
+import { getReviewList} from "./pages/home.js";
+
 
 // hash url 변경 시 처리
 window.addEventListener("hashchange", handleLocation);
@@ -18,13 +18,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // Firebase 연결되면 화면 표시
 		// user === authService.currentUser 와 같은 값
         handleLocation();
+        const hash = window.location.hash;
         if (user) {
         // 로그인 상태인 경우
-          //  alert('로그인')
+          if( hash === ""){
+            
+          }
         } else {
         // 로그아웃 상태인 경우
-            //alert('로그아웃')
+          if (hash !== ""){
+            
+          }
         }
+        getReviewList();
     });
 });
 
@@ -35,5 +41,6 @@ window.handleAuth = handleAuth;
 window.socialLogin = socialLogin;
 window.logout = logout;
 window.goToMain = goToMain;
+window.goToWrite = goToWrite;
+window.goToRead = goToRead;
 window.save_review = save_review;
-

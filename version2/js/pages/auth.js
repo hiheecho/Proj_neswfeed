@@ -122,6 +122,7 @@ export const logout = () => {
       // Sign-out successful.
       localStorage.clear();
       console.log("로그아웃 성공");
+      alert("러그아웃")
     })
     .catch((error) => {
       // An error happened.

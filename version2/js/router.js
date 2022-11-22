@@ -7,12 +7,15 @@ export const route = (event) => {
   
   const routes = {
     "/": "/pages/home.html",
+    auth:"/pages/auth.html",
     review: "/pages/review.html",
     page2: "/pages/page2.html",
     404: "/pages/404.html",
+    read: "/pages/read.html"
   };
-  import { getReviewList } from "./pages/review.js";
-  
+
+import { getReviewList } from "./pages/home.js";
+
   export const handleLocation = async () => {
     let path = window.location.hash.replace("#", ""); //""
   
@@ -32,13 +35,22 @@ export const route = (event) => {
           authService.currentUser.displayName ?? "닉네임 없음";
     
         document.getElementById("profileImg").src =
-          authService.currentUser.photoURL ?? "../assets/unknow_profile.png";
-    
-          getReviewList();
+          authService.currentUser.photoURL ?? "../assets/unknown_profile.png";
+
+        getReviewList();
       }
+      
   };
   export const goToMain = () => {
     window.location.hash = "";
   };
+  export const goToWrite = () => {
+    window.location.hash = "#review";
+  };
+  
+  export const goToRead = () => {
+    window.location.hash = "#read";
+  };
+  
     
     
