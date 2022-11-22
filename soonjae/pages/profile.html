@@ -1,0 +1,32 @@
+<div class="modal">
+  <div class="modal_body">
+    <div class="profile-form" onsubmit="changeProfile(event)">
+      <form>
+        <h1>프로필 관리</h1>
+        <img class="profile-img" id="image-on" />
+        <i class="fa-solid fa-camera profile-camera"></i>
+        <input
+          type="file"
+          class="camera-upload"
+          accept="image/*"
+          required
+          multiple
+          style="display: none"
+          onchange="onFileChange(event)"
+        />
+        <div>
+          <input
+            class="input-gear"
+            type="text"
+            placeholder="Username"
+            value=""
+          />
+        </div>
+        <button class="btn-login" type="submit">
+          <i class="fa-solid fa-gear fa-spin btn-gear"></i>수정 완료
+        </button>
+        <button class="btn-x" type="submit">취소</button>
+      </form>
+    </div>
+  </div>
+</div>
