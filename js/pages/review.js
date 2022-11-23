@@ -166,6 +166,7 @@ export const getReviewList = async () => {
       `<div class="card commentCard">
           <div class="card-body">
               <blockquote class="blockquote mb-0">
+                  <img id="movieImage" src="${cmtObj.movieImage}" alt="moviePoster">
                   <p class="commentText">${cmtObj.movieTitle}</p>
                   <p class="commentText">${cmtObj.review}</p>
                   <p id="${cmtObj.id}" class="noDisplay">
@@ -173,7 +174,7 @@ export const getReviewList = async () => {
                   <input class="newCmtInput" type="text" maxlength="30" />
                   <button class="updateBtn" onclick="update_comment(event)">완료</button></p>
                   <footer class="quote-footer">
-                    <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg}" alt="profileImg" />
+                    <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg ?? '../assets/blank_profile.png'}" alt="profileImg" />
                     <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
                     </div>
                     <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>

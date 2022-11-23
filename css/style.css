@@ -372,3 +372,10 @@
     height: 150px;
     margin-bottom: 20px;
   }
+
+  .commentCard #movieImage{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    object-fit: cover;
+  }
