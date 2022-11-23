@@ -30,6 +30,7 @@ export const changeProfile = async (event) => {
     .then(() => {
       alert("프로필 수정 완료");
       window.location.hash = "#review";
+      console.log(authService.currentUser)
     })
     .catch((error) => {
       alert("프로필 수정 실패");
