@@ -1,0 +1,374 @@
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+/* nav bar */
+#navBtn {
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: aliceblue;
+}
+
+#navBtn:hover {
+    background-color: #fff;
+}
+
+#navBtn- {
+    text-decoration: none;
+    color: black;
+}
+
+#profilebox {
+    width: 150px;
+}
+
+.nav_btn {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.nav_btn:hover {
+    background-color: gray;
+}
+
+.nav_item {
+    display: none;
+    width: 140px;
+    height: 80px;
+    background-color: #fff;
+    list-style: none;
+}
+
+#nav-box {
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+#nav-box:hover {
+    background-color: gray;
+}
+
+#nav-line {
+    text-decoration: none;
+    color: black;
+}
+
+.opener {
+    display: none;
+}
+
+.opener:checked~.nav_item {
+    display: block;
+}
+
+.opener:checked~.nav_item {
+    display: block;
+}
+
+
+/* auth */
+#authPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.authInput {
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.socialBtns {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#socialbtn {
+    border-radius: 20px;
+    border: none;
+    background-color: #fff;
+}
+
+#socialbtn:hover {
+    transform: scale(1.2);
+}
+
+#authToggle {
+    background-color: #fff;
+    margin: 10px 0;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    border-radius: 5px;
+}
+
+#authToggle:hover {
+    transform: scale(1.2);
+}
+
+#autBtnSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#authWrapper {
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgb(235, 233, 234);
+    min-width: 350px;
+}
+
+#authTitle {
+    text-align: center;
+    font-size: large;
+}
+
+#authBtn {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+#authBtn:hover {
+    transform: scale(1.2);
+
+}
+
+/* review style */
+.postNav{height: 100px; display: flex;justify-content: right;}
+.postNav #goMainBtn{ margin: 5px; border-radius: 20px; padding: 5px 20px; margin-left: 20px;}
+
+.post-container{
+    width: 50%;
+    height: 600px;
+    margin: auto;
+    border: 1px solid gray;
+    padding: 50px 50px;
+    margin-top: 50px;
+}
+.profile img{
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+#nickname { 
+    margin-left: 10px; 
+    font-size: 20px; 
+    vertical-align:middle;
+}
+.form-floating{ margin-bottom: 25px;}
+
+.form-floating label{ margin-left: 5px; font-size: 15px; }
+
+#submitBtn{
+    display: flex; 
+    float: right; 
+    
+    border-radius: 20px; 
+    padding: 5px 30px;
+}
+
+.updateBtns {
+  display: flex;
+  justify-content: end;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.noDisplay {
+  display: none;
+}
+.updateBtn {
+  min-width: 70px;
+}
+
+#review-list {
+  width: 1000px;
+  margin: 20px auto;
+}
+
+.cmtImg {
+  border-radius: 50%; 
+  margin-right: 10px;
+}
+
+
+/* profile */
+/* .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: none;
+  
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal.show {
+    display: block;
+  }
+  .modal_body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    width: 400px;
+    height: 600px;
+  
+    text-align: center;
+  
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .profile-form {
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 400px;
+    height: 600px;
+    position: fixed;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .profile-home {
+    position: absolute;
+  }
+  .profile-form h1 {
+    text-align: center;
+    position: absolute;
+    top: 30px;
+    left: 113px;
+  }
+  .profile-img {
+    width: 250px;
+    height: 250px;
+    border: 5px solid black;
+    border-radius: 50%;
+    position: absolute;
+    top: 130px;
+    right: 69px;
+  }
+  .profile-camera {
+    margin-left: 200px;
+    position: absolute;
+    top: 380px;
+    right: 75px;
+  }
+  .input-gear {
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: absolute;
+    top: 425px;
+    right: 98px;
+  }
+  .input-gear::placeholder {
+    color: #bec3c9;
+  }
+  .input-gear[type="text"]::placeholder {
+    font-family: "Material Icons Outlined";
+  }
+  .input-gear:hover {
+    border-color: aquamarine;
+  }
+  .btn-login {
+    background-color: #bec3c9;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #bec3c9;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 470px;
+    right: 175px;
+  }
+  .btn-login:hover {
+    background-color: #555b63;
+  }
+  .btn-gear {
+    margin-right: 5px;
+  }
+  .btn-x {
+    background-color: #bec3c9;
+    width: 60px;
+    height: 30px;
+    border: 1px solid #bec3c9;
+    border-radius: 15px;
+    position: absolute;
+    top: 490px;
+    right: 100px;
+  }
+  .btn-x:hover {
+    background-color: #555b63;
+  } */
+
+
+  /* 임시 profile */
+  #profileImg {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  #profilePage {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #profileWrapper {
+    width: auto;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  #profileWrapper > h2 {
+    text-align: center;
+  }
+  
+  #profileView {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+  
+  #imgInput {
+    display: none;
+  }
+  
+  #imgLabel {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
