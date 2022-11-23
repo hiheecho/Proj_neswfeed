@@ -58,7 +58,7 @@ export const save_review = async (event) => {
   const review = document.getElementById("review");
   const movieTitle = document.getElementById("movieTitle");
   let movieImage = await save_image();
-  const { uid, photoURL, displayName} = authService.currentUser;
+  const { uid, photoURL, displayName } = authService.currentUser;
   try {
     await addDoc(collection(dbService, "reviews"), {
       movieTitle : movieTitle.value,
@@ -72,7 +72,8 @@ export const save_review = async (event) => {
     review.value = "",
     movieTitle.value = "",
     movieImage = "",
-    alert('리뷰저장')
+    alert('리뷰를 저장했습니다.')
+    getReviewList();
   } catch (error) {
     alert (error);
     console.log("error in addDoc")

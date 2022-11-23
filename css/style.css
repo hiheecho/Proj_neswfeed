@@ -143,6 +143,19 @@
     transform: scale(1.2);
 
 }
+#socialbtn{
+  margin-top: 10px;
+}
+#socialbtn >button{
+  height:55px;
+  width:110px;
+}
+.githubBtn img{
+  object-fit: contain;
+}
+.googleBtn img{
+  object-fit: cover;
+}
 
 /* review style */
 .postNav{height: 100px; display: flex;justify-content: right;}
@@ -331,6 +344,7 @@
     margin-right: 10px;
   }
   
+
   #profilePage {
     height: 100vh;
     display: flex;
