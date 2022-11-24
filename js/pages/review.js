@@ -68,14 +68,13 @@ export const save_review = async (event) => {
     movieTitle.value = "",
     movieImage = "",
     alert('리뷰를 저장했습니다.')
-    getReviewList();
+    myReviewList();
   } catch (error) {
     alert (error);
     console.log("error in addDoc")
   }
 }
 
-// review 수정
 export const onEditing = (event) => {
   // 수정버튼 클릭
   event.preventDefault();
@@ -85,8 +84,10 @@ export const onEditing = (event) => {
   const cardBody = event.target.parentNode.parentNode;
   const commentText = cardBody.children[0].children[0];
   const commentText2 = cardBody.children[0].children[1];
-  const commentInputP = cardBody.children[0].children[2];
-
+  const commentInputP = cardBody.children[5];
+  console.log(
+    cardBody.children
+  );
   commentText.classList.add("noDisplay");
   commentText2.classList.add("noDisplay");
   commentInputP.classList.add("d-flex");
@@ -96,8 +97,7 @@ export const onEditing = (event) => {
 
 export const update_comment = async (event) => {
   event.preventDefault();
-  //이부분을 변경해야할것같음...
-  console.log('event.targer:', event.target.parentNode.children);
+  console.log('event.target:', event.target.parentNode.children);
   const newComment = event.target.parentNode.children[1].value;
   const movieComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
@@ -120,7 +120,6 @@ export const update_comment = async (event) => {
   }
 };
 
-
 // review 삭제
 export const delete_comment = async (event) => {
   event.preventDefault();
@@ -137,8 +136,8 @@ export const delete_comment = async (event) => {
 };
 
 
-//전체 review list
 
+//내 review list
 export const myReviewList = async () => {
   let cmtObjList = [];
   const q = query(
@@ -163,29 +162,30 @@ export const myReviewList = async () => {
     console.log(cmtObj.creatorId)
     console.log(isOwner)
     const temp_html =
-    `<div class="card commentCard">
-      <div class="card-body">
-          <blockquote class="blockquote mb-0">
-              <img id="movieImage" src="${cmtObj.movieImage}" alt="moviePoster">
-              <p class="commentText">${cmtObj.movieTitle}</p>
-              <p class="commentText">${cmtObj.review}</p>
-              <p id="${cmtObj.id}" class="noDisplay">
-              <input class="newtitleInput" type="text" maxlength="30" />
-              <input class="newCmtInput" type="text" maxlength="30" />
-              <button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-              <footer class="quote-footer">
-                <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg ?? '../assets/blank_profile.png'}" alt="profileImg" />
+    `<div class="my-comment-card">
+    <div class="card-body my-card-body" style="background:url(${cmtObj.movieImage}) 20% 1% / cover no-repeat;">
+        <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
+        <blockquote class="blockquote my-mb-0">
+        <div class="my-content">
+            <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg}" alt="profileImg" />
                 <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
-                </div>
-                <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
-              </footer>
-          </blockquote>
-          <div class="${isOwner ? "updateBtns" : "noDisplay"}">
-              <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
-              <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
-          </div>            
+            </div>
+            <a href="#" class="fa fa-heart-o option-card"><span>18</span></a>
+        </p>
+        <p class="commentText my-title">${cmtObj.movieTitle}</p>
+        <p class="commentText my-review-text">${cmtObj.review}</p>
+        <p id="${cmtObj.id}" class="noDisplay">
+        <input class="newtitleInput" type="text" maxlength="30" />
+        <input class="newCmtInput" type="text" maxlength="30" />
+        <button class="updateBtn" onclick="update_comment(event)">완료</button>
+        <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
+        <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+        <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+        </div> 
+        </blockquote>
       </div>
-</div>`;
+    </div>
+  </div>`;
 
   const div = document.createElement("div");
     div.classList.add("mycards");
@@ -198,3 +198,16 @@ export const myReviewList = async () => {
   
   });
 }
+
+// 글쓰기 toggle기능
+export const writeToggle = () => {
+  const postContainer = document.querySelector("#writePost");
+  const writeBtn = document.querySelector("#writeBtn");
+  if(writeBtn.value === '글쓰기'){
+    postContainer.style.display = "block"
+    writeBtn.value = "숨기기";
+  } else {
+    postContainer.style.display = "none"
+    writeBtn.value = "글쓰기";
+  }
+};

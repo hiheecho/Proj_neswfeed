@@ -16,20 +16,25 @@
         </section>
     </div>
 </nav>
-
-<div class="post-container">
-    <div class="mb-3">
-        <input id="movieImg" class="form-control" onchange="uploadImage(event)" type="file" id="formFileMultiple" multiple>
+<div class="my-review-container">
+    <div class="my-review-btn">
+        <input type="button" class="btn btn-secondary" type="submit" id="writeBtn" value="글쓰기" onclick="writeToggle()">
     </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="movieTitle"></textarea>
-        <label id="movieTitle" for="floatingTextarea">영화의 제목을 입력하세요.</label>
+    <div class="post-container" id="writePost">
+        <div class="mb-3">
+            <input id="movieImg" class="form-control" onchange="uploadImage(event)" type="file" id="formFileMultiple" multiple>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="movieTitle"></textarea>
+            <label id="movieTitle" for="floatingTextarea">영화의 제목을 입력하세요.</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="review" style="height: 300px"></textarea>
+            <label id=review for="floatingTextarea2">리뷰를 작성해주세요.</label>
+        </div>
+        <input id="submitBtn" class="btn btn-secondary" type="submit" value="작성완료" onclick="save_review(event)">
     </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="review" style="height: 300px"></textarea>
-        <label id=review for="floatingTextarea2">리뷰를 작성해주세요.</label>
+    <div id="my-review-list">
+        
     </div>
-    <input id="submitBtn" class="btn btn-secondary" type="submit" value="작성완료" onclick="save_review(event)">
 </div>
-
-<div id="my-review-list"></div>

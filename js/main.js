@@ -6,10 +6,12 @@ import {
     update_comment, 
     onEditing, 
     delete_comment,
-    uploadImage
+    uploadImage,
+    writeToggle
 } from './pages/review.js';
 import { changeProfile, onFileChange } from './pages/profile.js';
-// import { changeProfile, onFileChange } from './pages/popup.js';
+import { getcomments } from "./pages/loginMain.js";
+
 
 
 // url 바뀌면 handleLocation 실행
@@ -50,8 +52,10 @@ window.save_review = save_review;
 
 window.changeProfile = changeProfile;
 window.onFileChange = onFileChange;
+window.getcomments = getcomments;
 
 window.update_comment = update_comment;
 window.onEditing = onEditing;
 window.delete_comment = delete_comment;
 window.uploadImage = uploadImage;
+window.writeToggle = writeToggle

@@ -1,5 +1,5 @@
 import { authService } from "./firebase.js";
-
+import { getcomments } from "./pages/loginMain.js";
 export const route = (event) => {
     event.preventDefault();
     window.location.hash = event.target.hash;
@@ -15,7 +15,7 @@ const routes = {
     popup: './pages/pop.html',
 };
 
-import { getReviewList } from './pages/loginMain.js';
+
 import { myReviewList } from "./pages/review.js";
 
 export const handleLocation = async () => {
@@ -32,23 +32,26 @@ export const handleLocation = async () => {
 
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((data) => data.text());
-    document.getElementById("main-page").innerHTML = html;
+    document.getElementById("root").innerHTML = html;
+
+    if (path === "/") {
+        getcomments();
+      }
 
     // 특정 화면 랜더링 되면 DOM 처리
 
     // login 성공한 메인 페이지
     if (path === "loginMain") {
-        // 로그인한 회원의 프로필 사진 표시
-        document.getElementById("profileImg").src = 
-            authService.currentUser.photoURL ?? "../assets/blank_profile.png";
 
-        getReviewList();
+        document.getElementById("profileImg").src = authService.currentUser.photoURL ?? "../assets/blank_profile.png";
+        getcomments();
 
     }
 
     // 내 글 보러가기 페이지
     if (path === "review") {
         // 로그인한 회원의 프로필 사진 표시
+
         document.getElementById("profileImg").src = 
             authService.currentUser.photoURL ?? "../assets/blank_profile.png";
 
@@ -66,8 +69,16 @@ export const handleLocation = async () => {
           authService.currentUser.photoURL ?? "/assets/blank_profile.png";
         document.getElementById("profileNickname").placeholder =
           authService.currentUser.displayName ?? "닉네임 없음";
+    }
+    if (path === "popup") {
+        // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
+        document.getElementById("profileView").src =
+          authService.currentUser.photoURL ?? "/assets/blank_profile.png";
+        document.getElementById("profileNickname").placeholder =
+          authService.currentUser.displayName ?? "닉네임 없음";
       }
-}
+    };
+
 
 export const goToMain = () => {
     window.location.hash = "";

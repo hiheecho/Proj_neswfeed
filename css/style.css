@@ -2,6 +2,88 @@
     font-family: 'Gowun Dodum', sans-serif;
 }
 
+/* loginMain */
+.commentslists {
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  background-color: white;
+  padding: 120px;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: gray;
+  transform: rotateY(180deg);
+}
+
+.text_line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  height: 7em;
+}
+
+.title_line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  height: 2.5em;
+}
+.name_line {
+  width: 300px;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* nav bar */
 #navBtn {
     border: 1px solid gray;
@@ -168,6 +250,7 @@
     border: 1px solid gray;
     padding: 50px 50px;
     margin-top: 50px;
+    display: none;
 }
 .profile img{
     width: 40px;
@@ -186,7 +269,6 @@
 #submitBtn{
     display: flex; 
     float: right; 
-    
     border-radius: 20px; 
     padding: 5px 30px;
 }
@@ -205,16 +287,139 @@
   min-width: 70px;
 }
 
-#review-list {
-  width: 1000px;
-  margin: 20px auto;
+#my-review-list {
+  width: 90%;
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
 }
 
 .cmtImg {
   border-radius: 50%; 
   margin-right: 10px;
 }
-
+.my-review-container{
+  width: 100%;
+  margin: auto;
+}
+.my-review-btn{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+#writeBtn{
+  width: 150px;
+  margin: 30px;
+  border-radius: 20px;
+}
+  /* 카드 디자인 */
+  .my-comment-card {  
+    max-width: 1400px;
+    margin: 50px auto 0;
+  }
+  .my-card-body {
+      background-size: cover;
+      background: 20% 1% / cover no-repeat;
+      background-color: white;
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 19px 38px rgba(164, 164, 164, 0.5), 0 15px 12px rgba(164, 164, 164,0.3);
+      margin-bottom: 50px;
+      float: left;
+      padding: 0 1.3rem;
+      width: 550px;
+    }
+    .my-card-body:hover .my-content {
+      background: linear-gradient(to top, black, 20%, rgba(0,0,0,0));
+      transform: translateY(40px);
+    }
+    .option-card {
+      margin: 0 5px;
+      position: relative;
+      float: right;
+      font-size: 24px;
+    }
+    .my-card-body:hover .option-card span{
+    transform: translate(-50%, -10px);
+    opacity: 1;
+    }
+    .my-card-body .my-cmtAt{
+      float: left;
+      font-size: 14px;
+      padding: 10px;
+      font-weight: 500;
+      color: white;
+    }
+    .my-card-body .my-nick-n {
+      font-size: 12px;
+    }
+    .option-card span{
+      transition: all 0.3s;
+      opacity: 0;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Open Sans';
+      transform: translate(-50%, 0);
+    }
+    .my-mb-0 {
+      color: white;
+      transform: translateY(calc(200px + 4em));
+    }
+    .my-card-body .my-title{
+        margin-top: 10px;
+        color: white;
+      }
+    .my-card-body .my-review-text{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 70px;
+      margin: 0;
+      display: -webkit-box;
+        -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      }
+      
+    .my-card-body .my-content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      transform: translateY(calc(70px + 1em));
+      transition: transform 0.3s;
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+    .my-card-body #my-card-btn {
+      display: flex;
+      width: 120px;
+      margin: 2em auto 1em;
+      text-align: center;
+      font-size: 12px;
+      color: white;
+      line-height: 1;
+      position: relative;
+      font-weight: 700;
+      }
+      .my-card-body #my-card-btn::after {
+        content: '\2192';
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        transition: all 0.3s;
+      }
+      .my-card-body #my-card-btn:hover .my-card-body #my-card-btn::after {
+          transform: translate(5px, -50%);
+          opacity: 1;
+        }
+      
 
 /* profile */
 /* .modal {
@@ -387,9 +592,3 @@
     margin-bottom: 20px;
   }
 
-  .commentCard #movieImage{
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    object-fit: cover;
-  }
