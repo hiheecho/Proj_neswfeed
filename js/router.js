@@ -15,7 +15,8 @@ const routes = {
     popup: './pages/pop.html',
 };
 
-import { getReviewList } from './pages/review.js';
+import { getReviewList } from './pages/loginMain.js';
+import { myReviewList } from "./pages/review.js";
 
 export const handleLocation = async () => {
     let path = window.location.hash.replace("#", "");
@@ -51,7 +52,7 @@ export const handleLocation = async () => {
         document.getElementById("profileImg").src = 
             authService.currentUser.photoURL ?? "../assets/blank_profile.png";
 
-        getReviewList();
+        myReviewList();
     }
 
     // 프로필 관리 페이지
