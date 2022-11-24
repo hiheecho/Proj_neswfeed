@@ -442,7 +442,7 @@
   left: 50%;
 
   width: 400px;
-  height: 600px;
+  height: 650px;
 
   text-align: center;
 
@@ -453,7 +453,7 @@
   transform: translateX(-50%) translateY(-50%);
 }
 #profile-form {
-  border: 2px solid black;
+  
   border-radius: 20px;
   width: 400px;
   height: 600px;
@@ -516,7 +516,7 @@
   border-radius: 15px;
   margin-top: 20px;
   box-sizing: border-box;
-  position: absolute;
+  position: center;
   top: 470px;
   right: 175px;
 }
@@ -526,19 +526,14 @@
 .btn-gear {
   margin-right: 5px;
 }
-#btn-x {
-  background-color: #bec3c9;
-  width: 60px;
-  height: 30px;
-  border: 1px solid #bec3c9;
-  border-radius: 15px;
-  position: absolute;
-  top: 490px;
-  right: 100px;
+#removeModal {
+  margin-top: 10px;
+  border: none;
+  border-radius: 50%;
+  float: right;
+  margin-right: 20px;
 }
-#btn-x:hover {
-  background-color: #555b63;
-}
+
 #profileImg{
   border-radius: 30px;
 }

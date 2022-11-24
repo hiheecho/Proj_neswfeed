@@ -50,6 +50,7 @@
     <div id="modal-container">
         <div class="modal">
           <div class="modal_body">
+            <button onclick="closeModal()" id="removeModal">X</button>
             <div>
               <form id="profile-form" onsubmit="changeProfile(event)">
                 <h1>프로필 관리</h1>
@@ -72,7 +73,7 @@
                   />
                 </div>
                 <input id="btnSave" type="submit" value="수정완료" />
-                <button onclick="closeModal()" id="btn-x">취소</button>
+                
               </form>
             </div>
           </div>
