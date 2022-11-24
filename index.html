@@ -45,8 +45,39 @@
         <a href="#auth" onclick="route(event)">로그인/회원가입</a>
         <a href="#loginMain" onclick="route(event)">로그인한 메인페이지</a>
         <a href="#review" onclick="route(event)">내 블로그 보러가기</a>
-        <a href="#profile" onclick="route(event)">프로필 수정</a>
+        <a href="#" onclick="window.handleClickModal(event)">프로필 수정</a>
     </nav>
+    <div id="modal-container">
+        <div class="modal">
+          <div class="modal_body">
+            <div>
+              <form id="profile-form" onsubmit="changeProfile(event)">
+                <h1>프로필 관리</h1>
+                <label>
+                  <img id="prof-img" src="assets/blank_profile.png" />
+                  <input
+                    onchange="onFileChange(event)"
+                    type="file"
+                    id="camera-upload"
+                    accept="images/*"
+                    style="display: none"
+                  />
+                </label>
+                <div>
+                  <input
+                    value=""
+                    id="profileNickname"
+                    type="text"
+                    placeholder="Username"
+                  />
+                </div>
+                <input id="btnSave" type="submit" value="수정완료" />
+                <button onclick="closeModal()" id="btn-x">취소</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="js/main.js" type="module"></script>
 </body>
 

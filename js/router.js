@@ -11,8 +11,6 @@ const routes = {
     auth: '/pages/auth.html',
     loginMain: '/pages/loginMain.html',
     review: './pages/review.html',
-    profile: './pages/profile.html',
-    popup: './pages/pop.html',
 };
 
 
@@ -59,31 +57,14 @@ export const handleLocation = async () => {
     }
 
     // 프로필 관리 페이지
-    if (path === "profile") {
-        // 로그인한 회원의 프로필 사진 표시
-        document.getElementById("profileImg").src = 
-            authService.currentUser.photoURL ?? "../assets/blank_profile.png";
-            
-        // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
-        document.getElementById("profileView").src =
-          authService.currentUser.photoURL ?? "/assets/blank_profile.png";
-        document.getElementById("profileNickname").placeholder =
-          authService.currentUser.displayName ?? "닉네임 없음";
-    }
-    if (path === "popup") {
-        // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
-        document.getElementById("profileView").src =
-          authService.currentUser.photoURL ?? "/assets/blank_profile.png";
-        document.getElementById("profileNickname").placeholder =
-          authService.currentUser.displayName ?? "닉네임 없음";
-      }
-    };
 
+    document.getElementById("profileImg").src =
+    authService.currentUser.photoURL ?? "/assets/blank_profile.png";
+  document.getElementById("profileNickname").placeholder =
+    authService.currentUser.displayName ?? "닉네임 없음";
+};
 
 export const goToMain = () => {
     window.location.hash = "";
 };
 
-export const goToProfile = () => {
-    window.location.hash = "#profile";
-}

@@ -9,7 +9,14 @@
             <label class="nav_btn" for="opener">▼</label>
             <input class="opener" type="checkbox" id="opener">
             <div class="nav_item">
-                <li id="nav-box"><a id="nav-line" href="#profile" onclick="route(event)">프로필 수정</a></li>
+                <li id="nav-box">
+                    <a
+                      id="nav-line"
+                      href="#review"
+                      onclick="window.handleClickModal(event)"
+                      >프로필 수정</a
+                    >
+                  </li>
                 <li id="nav-box"><a id="nav-line" href="#review" onclick="route(event)">내 블로그</a></li>
                 <li id="nav-box"><a id="nav-line" href="#main" onclick="logout()">로그아웃</a></li>
             </div>

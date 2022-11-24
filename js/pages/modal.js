@@ -7,9 +7,26 @@ import {
 import { updateProfile } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
+export const closeModal = () => {
+  const profileModal = document.querySelector(".modal");
+  profileModal.classList.remove("show");
+};
+
+export const handleClickModal = () => {
+  const photoUrl = authService.currentUser.photoURL;
+  const profileModal = document.querySelector(".modal");
+  const profImg = document.querySelector("#prof-img");
+  profImg.src = photoUrl;
+  profileModal.classList.add("show");
+  console.log(profImg);
+  debugger;
+
+  // document.getElementsById("prof-img").src = photoUrl;
+};
+
 export const changeProfile = async (event) => {
   event.preventDefault();
-  document.getElementById("profileBtn").disabled = true;
+  document.getElementById("btnSave").disabled = true;
   const imgRef = ref(
     storageService,
     `${authService.currentUser.uid}/${uuidv4()}`
@@ -29,14 +46,21 @@ export const changeProfile = async (event) => {
   })
     .then(() => {
       alert("프로필 수정 완료");
-      window.location.hash = "#fanLog";
+      window.location.hash = "#review";
+      console.log(authService.currentUser.photoURL);
+      document.getElementById("prof-img").src =
+        authService.currentUser.photoURL ?? "../../assets/blank_profile.png";
+      document.getElementById("btnSave").disabled = false;
+
+      // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
+      document.getElementById("profileNickname").placeholder =
+        authService.currentUser.displayName ?? "닉네임 없음";
     })
     .catch((error) => {
       alert("프로필 수정 실패");
       console.log("error:", error);
     });
 };
-
 export const onFileChange = (event) => {
   const theFile = event.target.files[0]; // file 객체
   const reader = new FileReader();
@@ -45,6 +69,7 @@ export const onFileChange = (event) => {
     // 파일리더가 파일객체를 data URL로 변환 작업을 끝났을 때
     const imgDataUrl = finishedEvent.currentTarget.result;
     localStorage.setItem("imgDataUrl", imgDataUrl);
-    document.getElementById("profileView").src = imgDataUrl;
+    document.querySelector("#prof-img").src = imgDataUrl;
+    document.querySelector("#profileImg").src = imgDataUrl;
   };
 };

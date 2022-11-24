@@ -9,9 +9,13 @@ import {
     uploadImage,
     writeToggle
 } from './pages/review.js';
-import { changeProfile, onFileChange } from './pages/profile.js';
 import { getcomments } from "./pages/loginMain.js";
-
+import {
+    closeModal,
+    handleClickModal,
+    changeProfile,
+    onFileChange,
+  } from "./pages/modal.js";
 
 
 // url 바뀌면 handleLocation 실행
@@ -50,8 +54,11 @@ window.logout = logout;
 window.goToMain = goToMain;
 window.save_review = save_review;
 
+window.closeModal = closeModal;
+window.handleClickModal = handleClickModal;
 window.changeProfile = changeProfile;
-window.onFileChange = onFileChange;
+window.onFileChange = onFileChange;;
+
 window.getcomments = getcomments;
 
 window.update_comment = update_comment;
