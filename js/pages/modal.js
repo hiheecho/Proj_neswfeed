@@ -18,10 +18,9 @@ export const handleClickModal = () => {
   const profImg = document.querySelector("#prof-img");
   profImg.src = photoUrl;
   profileModal.classList.add("show");
+  document.getElementById("prof-img").src =
+    authService.currentUser.photoURL ?? "../assets/blank_profile.png";
   console.log(profImg);
-  debugger;
-
-  // document.getElementsById("prof-img").src = photoUrl;
 };
 
 export const changeProfile = async (event) => {
@@ -49,7 +48,7 @@ export const changeProfile = async (event) => {
       window.location.hash = "#review";
       console.log(authService.currentUser.photoURL);
       document.getElementById("prof-img").src =
-        authService.currentUser.photoURL ?? "../../assets/blank_profile.png";
+        authService.currentUser.photoURL ?? "../assets/blank_profile.png";
       document.getElementById("btnSave").disabled = false;
 
       // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
