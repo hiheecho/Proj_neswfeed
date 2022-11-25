@@ -1,5 +1,5 @@
 import {
-  doc,
+  doc, 
   addDoc,
   updateDoc,
   deleteDoc,
@@ -7,7 +7,9 @@ import {
   orderBy,
   query,
   getDocs,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+
 import {
   ref,
   getDownloadURL,
@@ -15,7 +17,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { dbService, authService, storageService }  from "../firebase.js";
-import { closeReview } from "./modal.js";
+
 // Create API
 // reviews 라는 이름의 collection에 객체 형태의 Document를 신규 등록
 
@@ -82,12 +84,9 @@ export const onEditing = (event) => {
   udBtns.forEach((udBtn) => (udBtn.disabled = "true"));
 
   const cardBody = event.target.parentNode.parentNode;
-  const commentText = cardBody.children[0].children[0];
-  const commentText2 = cardBody.children[0].children[1];
-  const commentInputP = cardBody.children[5];
-  console.log(
-    cardBody.children
-  );
+  const commentText = cardBody.children[4].children[0];
+  const commentText2 = cardBody.children[4].children[1];
+  const commentInputP = cardBody.children[3];
   commentText.classList.add("noDisplay");
   commentText2.classList.add("noDisplay");
   commentInputP.classList.add("d-flex");
@@ -97,17 +96,17 @@ export const onEditing = (event) => {
 
 export const update_comment = async (event) => {
   event.preventDefault();
-  console.log('event.target:', event.target.parentNode.children);
+  
   const newComment = event.target.parentNode.children[1].value;
   const movieComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
-
   const parentNode = event.target.parentNode.parentNode;
-  const commentText = parentNode.children[0];
-  const commentText2 = parentNode.children[1];
+  const commentText = parentNode.children[1];
+  const commentText2 = parentNode.children[2];
   commentText.classList.remove("noDisplay");
   commentText2.classList.remove("noDisplay");
-  const commentInputP = parentNode.children[2];
+  const commentInputP = parentNode.children[3];
+
   commentInputP.classList.remove("d-flex");
   commentInputP.classList.add("noDisplay");
 
@@ -144,7 +143,6 @@ export const myReviewList = async () => {
   );
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log(doc.data());
     const commentObj = {
       ...doc.data(),
       id: doc.id
@@ -153,36 +151,28 @@ export const myReviewList = async () => {
   });
   const commentList = document.getElementById("my-review-list");
   const currentUid = authService.currentUser.uid;
- 
+  
   commentList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
-    console.log(cmtObj.creatorId)
-    console.log(isOwner)
     const temp_html =
     `<div class="my-comment-card">
     <div class="card-body my-card-body" style="background:url(${cmtObj.movieImage}) 20% 1% / cover no-repeat;">
-        <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
-        <button id="open-review" onclick="window.openMyReview(event)">자세히 보기</button>
         <blockquote class="blockquote my-mb-0">
         <div class="my-content">
-            <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg}" alt="profileImg" />
-                <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
-            </div>
-            <a href="#" class="fa fa-heart-o option-card"><span>18</span></a>
-        </p>
-        <p class="commentText my-title">${cmtObj.movieTitle}</p>
-        <p class="commentText my-review-text">${cmtObj.review}</p>
-        <p id="${cmtObj.id}" class="noDisplay">
-        <input class="newtitleInput" type="text" maxlength="30" />
-        <textarea class="newCmtInput" placeholder="Leave a comment here" id="review" style="height: 300px"></textarea>
-        <button class="updateBtn" onclick="update_comment(event)">완료</button>
-        <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
-        <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
-        <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
-        </div> 
+          <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
+          <p class="commentText my-title">${cmtObj.movieTitle}</p>
+          <p class="commentText my-review-text">${cmtObj.review}</p>
+          <p id="${cmtObj.id}" class="noDisplay">
+          <input class="newtitleInput" type="text" maxlength="30" />
+          <input class="newCmtInput" type="text" maxlength="30" />
+          <button class="updateBtn" onclick="update_comment(event)">완료</button>
+          <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
+          <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+          <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+          </div> 
+        </div>
         </blockquote>
-      </div>
     </div>
   </div>`;
 
@@ -214,9 +204,11 @@ export const writeToggle = () => {
 
 // 글 자세히 보기 (모달창 구현)
 export const openMyReview = async() => {
+
+
   const reviewModal = document.querySelector(".review-modal");
   reviewModal.classList.add("show");
-
+  
   let cmtObjList = [];
   const q = query(
     collection(dbService, "reviews"),
@@ -228,17 +220,17 @@ export const openMyReview = async() => {
       ...doc.data(),
       id: doc.id
     };
+    
     cmtObjList.push(commentObj);
-    console.log(cmtObjList)
+    //console.log(cmtObjList)
   });
   const commentList = document.getElementById("review-content");
   const currentUid = authService.currentUser.uid;
-  const commentId = document.querySelector('.mycards').id
-  console.log(commentId)
+  
   commentList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
-    console.log(cmtObj)
+    // console.log(cmtObj)
     const temp_html =
     `<div id = "${cmtObj.id}">
         <img src="${cmtObj.movieImage}" class="card-img-top" alt="...">
