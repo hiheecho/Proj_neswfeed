@@ -27,7 +27,7 @@ export async function getcomments() {
   cmtObjList.forEach((cmtObj) => {
     const foster = `
     <div class="flip-card" >
-      <div class="flip-card-inner" data-id="${cmtObj.id}" onclick="openReview(event)">
+      <div class="flip-card-inner">
         <div class="flip-card-front">
           <img src="${cmtObj.movieImage}" alt="Avatar" style="width:300px;height:300px;"
           >
@@ -36,7 +36,7 @@ export async function getcomments() {
           <h1 class="title_line">${cmtObj.movieTitle}</h1> 
           <p class="name_line">${cmtObj.nickname}</p> 
           <p class="text_line">${cmtObj.review}</p>
-          
+          <button data-id="${cmtObj.id}" onclick="openReview(event)">자세히 보기</button>
         </div>
       </div>
     </div>`;
