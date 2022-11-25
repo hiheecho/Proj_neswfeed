@@ -106,9 +106,7 @@ export const socialLogin = (event) => {
 
   if (name === "google") {
     provider = new GoogleAuthProvider();
-    console.log(provider);
     window.location.hash = "#loginMain";
-
   } else if (name === "github") {
     provider = new GithubAuthProvider();
     window.location.hash = "#loginMain";

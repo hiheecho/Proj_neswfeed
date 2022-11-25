@@ -26,18 +26,66 @@ export async function getcomments() {
 
   cmtObjList.forEach((cmtObj) => {
     const foster = `
-    <div class="flip-card" onclick="window.reviewClickModal(event)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="${cmtObj.movieImage}" alt="Avatar" style="width:300px;height:300px;">
+    <div class="flip-card" >
+      <div class="flip-card-inner" data-id="${cmtObj.id}" onclick="openReview(event)">
+        <div class="flip-card-front">
+          <img src="${cmtObj.movieImage}" alt="Avatar" style="width:300px;height:300px;"
+          >
+        </div >
+        <div class="flip-card-back">
+          <h1 class="title_line">${cmtObj.movieTitle}</h1> 
+          <p class="name_line">${cmtObj.nickname}</p> 
+          <p class="text_line">${cmtObj.review}</p>
+          
+        </div>
       </div>
-      <div class="flip-card-back">
-        <h1 class="title_line">${cmtObj.movieTitle}</h1> 
-        <p class="name_line">${cmtObj.nickname}</p> 
-        <p class="text_line">${cmtObj.review}</p>
-      </div>
-    </div>
-  </div>`;
+    </div>`;
     $(".commentslists").append(foster);
   });
 }
+
+export const openReview = async (event) => {
+  const commentId = event.target.getAttribute('data-id');
+  const reviewModal = document.querySelector('.main-review-modal');
+  reviewModal.classList.add('show');
+  const q = query(
+    collection(dbService, 'reviews'),
+    orderBy('createdAt', 'desc')
+  );
+  const querySnapshot = await getDocs(q);
+  const cmtObjList = [];
+  querySnapshot.forEach((doc) => {
+    const commentObj = {
+      ...doc.data(),
+      id: doc.id,
+    };
+    cmtObjList.push(commentObj);
+  });
+  const commentList = document.getElementById('main-review-content');
+  commentList.innerHTML = '';
+  const content = cmtObjList.filter((obj) => commentId === obj.id); 
+  const object = content[0];
+  const temp_html = `
+  <div id = "${object.id}">
+      <img src="${object.movieImage}" class="card-img-top" alt="...">
+      <div class=card-body">
+            <div class="my-content">
+              <div class="my-cmtAt">${new Date(object.createdAt).toString().slice(0, 15)}</div>
+              <p class="commentText my-title" style="color:black">${object.movieTitle}</p>
+              <p class="commentText my-review-text" style="color:black">${object.review}</p>
+              </div> 
+            </div>
+      </div>
+  </div>`;
+  const div = document.createElement('div');
+  div.classList.add('main-cards');
+  div.innerHTML = temp_html;
+  commentList.appendChild(div);
+
+};
+
+
+export const closeMainReviewModal = () => {
+  const reviewModal = document.querySelector('.main-review-modal');
+  reviewModal.classList.remove('show');
+};
