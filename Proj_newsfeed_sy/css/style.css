@@ -2,7 +2,7 @@
   font-family: "Gowun Dodum", sans-serif;
 }
 
-/* loginMain review style*/
+/* loginMain */
 .commentslists {
   flex-wrap: wrap;
   -webkit-box-pack: center;
@@ -11,7 +11,6 @@
   grid-template-columns: auto auto auto auto;
   gap: 10px;
   padding: 120px;
-  width: 100%;
 }
 
 .flip-card {
@@ -55,15 +54,12 @@
   color: gray;
   transform: rotateY(180deg);
 }
-.flip-card-front img{
-  object-fit: cover;
-}
 
 .text_line {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 6; /* 라인 수 */
+  -webkit-line-clamp: 6; /* 라인수 */
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   line-height: 1.2em;
@@ -157,7 +153,7 @@
   display: block;
 }
 
-/* auth style */
+/* auth */
 #authPage {
   width: 100%;
   height: 100vh;
@@ -242,7 +238,7 @@
   object-fit: cover;
 }
 
-/* post-review style */
+/* review style */
 .postNav {
   height: 100px;
   display: flex;
@@ -331,8 +327,7 @@
   margin: 30px;
   border-radius: 20px;
 }
-
-/* my-review-list 카드 디자인 */
+/* 카드 디자인 */
 .my-comment-card {
   max-width: 1400px;
   margin: 50px auto 0;
@@ -439,8 +434,7 @@
   opacity: 1;
 }
 
-
-/* profile modal*/
+/* profile */
 .modal {
   position: absolute;
   top: 0;
@@ -555,12 +549,13 @@
   border-radius: 30px;
 }
 
-/* reviewModal style */
+
+/* my Review modal */
 .review-modal {
   position: absolute;
   top: 0;
   left: 0;
-
+  
   width: 100%;
   height: 100%;
   display: none;
@@ -570,13 +565,15 @@
 .review-modal.show {
   display: block;
 }
-.review-modal-body {
+.reviewmodal_body {
   position: absolute;
   top: 50%;
   left: 50%;
 
   width: 400px;
   height: 650px;
+
+  background-color: #fff;
 
   text-align: center;
 

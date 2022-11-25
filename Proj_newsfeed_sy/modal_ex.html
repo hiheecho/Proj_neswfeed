@@ -1,0 +1,59 @@
+<div id="review-modal">
+    <div class="review-modal-body">
+        <button onclick="closeMyReviewModal()" id="removeModal">X</button>
+        <div class="my-comment-card">
+            <div class="card-body my-card-body" style="background:url(${cmtObj.movieImage}) 20% 1% / cover no-repeat;">
+                <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
+                <blockquote class="blockquote my-mb-0">
+                <div class="my-content">
+                    <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg}" alt="profileImg" />
+                        <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+                    </div>
+                </p>
+                <p class="commentText my-title">${cmtObj.movieTitle}</p>
+                <p class="commentText my-review-text">${cmtObj.review}</p>
+                <p id="${cmtObj.id}" class="noDisplay">
+                <input class="newtitleInput" type="text" maxlength="30" />
+                <input class="newCmtInput" type="text" maxlength="300" />
+                <button class="updateBtn" onclick="update_comment(event)">완료</button>
+                <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
+                <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+                <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+                </div> 
+                </blockquote>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<div id="review-modal">
+    <div class="review-modal-body">
+      <button onclick="closeMyReviewModal()" id="removeModal">X</button>
+      <div class="card-body my-card-body">
+        <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
+        <blockquote class="blockquote my-mb-0">
+          <div class="my-content">
+            <p class="commentText my-title">${cmtObj.movieTitle}</p>
+            <p class="commentText my-review-text">${cmtObj.review}</p>
+            <p id="${cmtObj.id}" class="noDisplay">
+            <input class="newtitleInput" type="text" maxlength="30" />
+            <textarea class="newCmtInput" placeholder="Leave a comment here" id="review" style="height: 300px"></textarea>
+            <button class="updateBtn" onclick="update_comment(event)">완료</button>
+            <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
+              <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+              <button name="${cmtObj.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+            </div> 
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <img src="${cmtObj.movieImage}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${cmtObj.movieTitle}</h5>
+      <p class="card-text">${cmtObj.review}</p>
+      <p class="card-text"><small class="text-muted">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</small></p>
+    </div>
+  </div>
