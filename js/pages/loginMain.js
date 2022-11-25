@@ -26,7 +26,7 @@ export async function getcomments() {
 
   cmtObjList.forEach((cmtObj) => {
     const foster = `
-    <div class="flip-card">
+    <div class="flip-card" onclick="window.reviewClickModal(event)">
     <div class="flip-card-inner">
       <div class="flip-card-front">
         <img src="${cmtObj.movieImage}" alt="Avatar" style="width:300px;height:300px;">

@@ -72,3 +72,12 @@ export const onFileChange = (event) => {
     document.querySelector("#profileImg").src = imgDataUrl;
   };
 };
+
+export const reviewClickModal = () => {
+  const reviewModal = document.querySelector(".review-modal");
+  reviewModal.classList.add("show");
+};
+export const closeReview = () => {
+  const reviewModal = document.querySelector(".review-modal");
+  reviewModal.classList.remove("show");
+};

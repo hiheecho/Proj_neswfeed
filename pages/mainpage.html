@@ -6,7 +6,39 @@
         </a>
         <button id="navBtn"><a id="navBtn-" href="#auth" onclick="route(event)">로그인/회원가입</a></button>
     </div>
+</nav>
     <div class="commentslists">
 
     </div>
-</nav>
+
+    <!-- <div id=modal-container">
+        <div class="modal">
+          <div class="modal_body">
+            <button onclick="closeModal()" id="removeModal">X</button>
+            <div>
+              <form id="profile-form" onsubmit="changeProfile(event)">
+                <h1>프로필 관리</h1>
+                <label>
+                  <img id="prof-img" src="./assets/blank_profile.png" />
+                  <input
+                    onchange="onFileChange(event)"
+                    type="file"
+                    id="camera-upload"
+                    accept="images/*"
+                    style="display: none"
+                  />
+                </label>
+                <div>
+                  <input
+                    value=""
+                    id="profileNickname"
+                    type="text"
+                    placeholder="Username"
+                  />
+                </div>
+                <input id="btnSave" type="submit" value="수정완료" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> -->

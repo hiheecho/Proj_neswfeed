@@ -15,6 +15,8 @@ import {
     handleClickModal,
     changeProfile,
     onFileChange,
+    reviewClickModal,
+    closeReview
   } from "./pages/modal.js";
 
 
@@ -57,7 +59,9 @@ window.save_review = save_review;
 window.closeModal = closeModal;
 window.handleClickModal = handleClickModal;
 window.changeProfile = changeProfile;
-window.onFileChange = onFileChange;;
+window.onFileChange = onFileChange;
+window.reviewClickModal = reviewClickModal;
+window.closeReview = closeReview;
 
 window.getcomments = getcomments;
 

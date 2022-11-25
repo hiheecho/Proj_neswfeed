@@ -69,6 +69,7 @@ export const handleAuth = (event) => {
     createUserWithEmailAndPassword(authService, emailVal, pwVal)
       .then((userCredential) => {
         console.log("회원가입 성공");
+        alert("회원가입 성공 ! 로그인 해주세요. ")
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -106,8 +107,11 @@ export const socialLogin = (event) => {
   if (name === "google") {
     provider = new GoogleAuthProvider();
     console.log(provider);
+    window.location.hash = "#loginMain";
+
   } else if (name === "github") {
     provider = new GithubAuthProvider();
+    window.location.hash = "#loginMain";
   }
   signInWithPopup(authService, provider)
     .then((result) => {
