@@ -13,7 +13,7 @@ const routes = {
   review: "./pages/review.html",
 };
 
-import { myReviewList } from "./pages/review.js";
+import { myReviewList, searchBar } from "./pages/review.js";
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
@@ -41,7 +41,8 @@ export const handleLocation = async () => {
   if (path === "loginMain") {
     document.getElementById("profileImg").src =
       authService.currentUser.photoURL ?? "../assets/blank_profile.png";
-    getcomments();
+    searchBar();
+    getcomments(); 
   }
 
   // 내 글 보러가기 페이지

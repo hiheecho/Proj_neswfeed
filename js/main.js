@@ -9,7 +9,8 @@ import {
     uploadImage,
     writeToggle,
     openMyReview,
-    closeMyReviewModal
+    closeMyReviewModal,
+    searchBar,
 } from './pages/review.js';
 import { getcomments, openReview, closeMainReviewModal } from "./pages/loginMain.js";
 import {
@@ -69,7 +70,7 @@ window.update_comment = update_comment;
 window.onEditing = onEditing;
 window.delete_comment = delete_comment;
 window.uploadImage = uploadImage;
-window.writeToggle = writeToggle
-
+window.writeToggle = writeToggle;
+window.searchBar = searchBar;
 window.openMyReview = openMyReview;
 window.closeMyReviewModal = closeMyReviewModal;

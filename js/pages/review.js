@@ -7,7 +7,7 @@ import {
   orderBy,
   query,
   getDocs,
-  getDoc
+  where,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 
 import {
@@ -243,4 +243,56 @@ export const openMyReview = async (event) => {
 export const closeMyReviewModal = () => {
   const reviewModal = document.querySelector('.review-modal');
   reviewModal.classList.remove('show');
+};
+
+
+export const searchBar = async (event) => {
+  let searchInput = document.getElementById("inputSearch").value;
+  let objectList = [];
+  const q = query(
+    collection(dbService, "reviews"),
+    where("movieTitle", "==", searchInput)
+  );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const obj = {
+      id: doc.id,
+      ...doc.data(),
+    };
+    objectList.push(obj);
+  });
+  console.log(objectList);
+  let filteredList = document.getElementById("listOn");
+  filteredList.innerHTML = "";
+  objectList.forEach((cmtObj) => {
+    let temp_html = 
+    `<div class="select-card">
+        <div class="card-body select-card-body" style="background:url(${
+          cmtObj.movieImage
+        }) 20% 1% / cover no-repeat;">
+            <div class="my-cmtAt">${new Date(cmtObj.createdAt)
+              .toString()
+              .slice(0, 15)}</div>
+            <blockquote class="blockquote my-mb-0">
+            <div class="my-content">
+            <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${
+              cmtObj.profileImg
+            }" alt="profileImg" />
+                <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+            </div>
+            <a href="#" class="fa fa-heart-o option-card"><span>18</span></a>
+        
+            <p id="my-title" class="commentText my-title">${cmtObj.movieTitle}</p>
+            <p id="my-review-text" class="commentText my-review-text">${
+              cmtObj.review
+            }</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>`;
+    const div = document.createElement("div");
+    div.classList.add("mycard");
+    div.innerHTML = temp_html;
+    filteredList.appendChild(div);
+  });
 };
