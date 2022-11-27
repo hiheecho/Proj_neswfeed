@@ -109,9 +109,11 @@ export const update_comment = async (event) => {
   try {
     await updateDoc(commentRef, { movieTitle: movieComment, review: newComment });
     myReviewList();
+    alert('수정완료!')
   } catch (error) {
     alert(error);
   }
+  window.location.reload();
 };
 
 // review 삭제
@@ -123,10 +125,12 @@ export const delete_comment = async (event) => {
     try {
       await deleteDoc(doc(dbService, "reviews", id));
       myReviewList();
+      alert('삭제완료!')
     } catch (error) {
       alert(error);
     }
   }
+  window.location.reload();
 };
 
 //내 review list
@@ -155,10 +159,11 @@ export const myReviewList = async () => {
     <div class="card-body my-card-body" style="background:url(${cmtObj.movieImage}) 20% 1% / cover no-repeat;">
         <blockquote class="blockquote my-mb-0">
           <div class="my-content">
-            <button id="open-review" data-id="${cmtObj.id}" onclick="window.openMyReview(event)">자세히 보기</button>
+            
             <div class="my-cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 15)}</div>
             <p class="commentText my-title">${cmtObj.movieTitle}</p>
             <p class="commentText my-review-text">${cmtObj.review}</p> 
+            <button id="open-review" data-id="${cmtObj.id}" onclick="window.openMyReview(event)">자세히 보기</button>
           </div>
         </blockquote>
     </div>
@@ -220,13 +225,13 @@ export const openMyReview = async (event) => {
             <div class="my-content">
               <div class="my-cmtAt">${new Date(asd.createdAt).toString().slice(0, 15)}</div>
               <p class="commentText my-title" style="color:black">${asd.movieTitle}</p>
-              <p class="commentText my-review-text" style="color:black">${asd.review}</p>
-              <p id="${asd.id}" class="noDisplay">
-              <input class="newtitleInput" type="text" maxlength="30" />
-              <textarea class="newCmtInput" placeholder="Leave a comment here" id="review" style="height: 300px"></textarea>
-              <button class="updateBtn" onclick="update_comment(event)">완료</button>
+              <p class="commentText my-review-text"  style="color:black">${asd.review}</p>
+              <p id="${asd.id}" class="noDisplay changeinput">
+              <input class="newtitleInput" type="text"  />
+              <textarea class="newCmtInput" placeholder="Leave a comment here" style="height: 300px"></textarea>
+              <button class="updateBtn" onclick="update_comment(event)">완료</button></p>
               <div id= "my-card-btn"class="${isOwner ? "updateBtns" : "noDisplay"}">
-                <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+                <button onclick="onEditing(event)" id="hide-btn" class="editBtn btn btn-dark">수정</button>
                 <button name="${asd.id}" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
               </div> 
             </div>
@@ -246,53 +251,53 @@ export const closeMyReviewModal = () => {
 };
 
 
-export const searchBar = async (event) => {
-  let searchInput = document.getElementById("inputSearch").value;
-  let objectList = [];
-  const q = query(
-    collection(dbService, "reviews"),
-    where("movieTitle", "==", searchInput)
-  );
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    const obj = {
-      id: doc.id,
-      ...doc.data(),
-    };
-    objectList.push(obj);
-  });
-  console.log(objectList);
-  let filteredList = document.getElementById("listOn");
-  filteredList.innerHTML = "";
-  objectList.forEach((cmtObj) => {
-    let temp_html = 
-    `<div class="select-card">
-        <div class="card-body select-card-body" style="background:url(${
-          cmtObj.movieImage
-        }) 20% 1% / cover no-repeat;">
-            <div class="my-cmtAt">${new Date(cmtObj.createdAt)
-              .toString()
-              .slice(0, 15)}</div>
-            <blockquote class="blockquote my-mb-0">
-            <div class="my-content">
-            <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${
-              cmtObj.profileImg
-            }" alt="profileImg" />
-                <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
-            </div>
-            <a href="#" class="fa fa-heart-o option-card"><span>18</span></a>
+// export const searchBar = async (event) => {
+//   let searchInput = document.getElementById("inputSearch").value;
+//   let objectList = [];
+//   const q = query(
+//     collection(dbService, "reviews"),
+//     where("movieTitle", "==", searchInput)
+//   );
+//   const querySnapshot = await getDocs(q);
+//   querySnapshot.forEach((doc) => {
+//     const obj = {
+//       id: doc.id,
+//       ...doc.data(),
+//     };
+//     objectList.push(obj);
+//   });
+//   console.log(objectList);
+//   let filteredList = document.getElementById("listOn");
+//   filteredList.innerHTML = "";
+//   objectList.forEach((cmtObj) => {
+//     let temp_html = 
+//     `<div class="select-card">
+//         <div class="card-body select-card-body" style="background:url(${
+//           cmtObj.movieImage
+//         }) 20% 1% / cover no-repeat;">
+//             <div class="my-cmtAt">${new Date(cmtObj.createdAt)
+//               .toString()
+//               .slice(0, 15)}</div>
+//             <blockquote class="blockquote my-mb-0">
+//             <div class="my-content">
+//             <div class="my-nick-n"><img class="cmtImg" width="50px" height="50px" src="${
+//               cmtObj.profileImg
+//             }" alt="profileImg" />
+//                 <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+//             </div>
+//             <a href="#" class="fa fa-heart-o option-card"><span>18</span></a>
         
-            <p id="my-title" class="commentText my-title">${cmtObj.movieTitle}</p>
-            <p id="my-review-text" class="commentText my-review-text">${
-              cmtObj.review
-            }</p>
-            </blockquote>
-          </div>
-        </div>
-      </div>`;
-    const div = document.createElement("div");
-    div.classList.add("mycard");
-    div.innerHTML = temp_html;
-    filteredList.appendChild(div);
-  });
-};
+//             <p id="my-title" class="commentText my-title">${cmtObj.movieTitle}</p>
+//             <p id="my-review-text" class="commentText my-review-text">${
+//               cmtObj.review
+//             }</p>
+//             </blockquote>
+//           </div>
+//         </div>
+//       </div>`;
+//     const div = document.createElement("div");
+//     div.classList.add("mycard");
+//     div.innerHTML = temp_html;
+//     filteredList.appendChild(div);
+//   });
+// };

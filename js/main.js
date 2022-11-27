@@ -10,7 +10,6 @@ import {
     writeToggle,
     openMyReview,
     closeMyReviewModal,
-    searchBar,
 } from './pages/review.js';
 import { getcomments, openReview, closeMainReviewModal } from "./pages/loginMain.js";
 import {
@@ -19,6 +18,7 @@ import {
     changeProfile,
     onFileChange,
   } from "./pages/modal.js";
+import { searchBar } from './pages/search.js';
 
 
 // url 바뀌면 handleLocation 실행

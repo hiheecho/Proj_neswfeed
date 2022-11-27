@@ -36,7 +36,7 @@ export async function getcomments() {
           <h1 class="title_line">${cmtObj.movieTitle}</h1> 
           <p class="name_line">${cmtObj.nickname}</p> 
           <p class="text_line">${cmtObj.review}</p>
-          <button data-id="${cmtObj.id}" onclick="openReview(event)">자세히 보기</button>
+          <button class="open-review" data-id="${cmtObj.id}" onclick="openReview(event)">자세히 보기</button>
         </div>
       </div>
     </div>`;

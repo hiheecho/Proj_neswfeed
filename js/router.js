@@ -11,9 +11,11 @@ const routes = {
   auth: "/pages/auth.html",
   loginMain: "/pages/loginMain.html",
   review: "./pages/review.html",
+  search: "./pages/search.html",
 };
 
-import { myReviewList, searchBar } from "./pages/review.js";
+import { myReviewList } from "./pages/review.js";
+import { searchBar } from "./pages/search.js";
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
@@ -41,8 +43,16 @@ export const handleLocation = async () => {
   if (path === "loginMain") {
     document.getElementById("profileImg").src =
       authService.currentUser.photoURL ?? "../assets/blank_profile.png";
-    searchBar();
+    //searchBar();
     getcomments(); 
+  }
+
+  // search page
+  if (path === "search") {
+    document.getElementById("profileImg").src =
+      authService.currentUser.photoURL ?? "../assets/blank_profile.png";
+    searchBar();
+    getcomments();
   }
 
   // 내 글 보러가기 페이지
