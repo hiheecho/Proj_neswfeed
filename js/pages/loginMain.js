@@ -71,9 +71,19 @@ export const openReview = async (event) => {
       <div class=card-body">
             <div class="my-content">
               <div class="my-cmtAt">${new Date(object.createdAt).toString().slice(0, 15)}</div>
+              
               <p class="commentText my-title" style="color:black">${object.movieTitle}</p>
+              <div class="modal-profile">
+                <img class="cmtImg" width="50px" height="50px" src="${
+                  object.profileImg
+                }" alt="profileImg" />
+                <p class="name_line">${
+                  object.nickname ?? "닉네임 없음"
+                }</p> 
+              </div>
               <p class="commentText my-review-text" style="color:black">${object.review}</p>
               </div> 
+              
             </div>
       </div>
   </div>`;

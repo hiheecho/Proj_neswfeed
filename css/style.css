@@ -979,3 +979,11 @@ list-style: none;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   background-color: #fff;
 }
+.modal-profile{
+  display: flex;
+  padding-bottom: 30px;
+}
+.modal-profile .name_line{
+  width: 50px;
+  padding: 0;
+}
