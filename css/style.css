@@ -712,7 +712,7 @@ list-style: none;
 .review-modal.show, .main-review-modal.show {
   display: block;
 }
-.review-modal-body, .main-review-modal-body, .search-card-body{
+.review-modal-body, .main-review-modal-body{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -972,4 +972,10 @@ list-style: none;
   padding-left: 62px;
   padding-top: 40px;
   position: relative;
+  margin: auto;
+  width: 1000px;
+  height: 660px;
+  border-radius: 20px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  background-color: #fff;
 }
